@@ -51,7 +51,6 @@ class Mantis:
         self.resumen = None 
         self.estado = None
         self.jira = None
-        self.contexto = None
 
     def toJSON(self):
         json = '{"id": ' + str(self.id) + ','
@@ -59,8 +58,7 @@ class Mantis:
         json += '"categoria": ' + '"' + self.categoria.decode('utf-8') + '",'
         json += '"severidad": ' + '"' + self.severidad + '",'
         json += '"estado": ' + '"' + self.estado + '",'
-        json += '"resumen": ' + '"' + self.resumen.decode('utf-8') + '",' 
-        json += '"contexto": ' + '"' + self.contexto.decode('utf-8') + '"}'
+        json += '"resumen": ' + '"' + self.resumen.decode('utf-8') + '"}'
 		
         return json
         
@@ -105,9 +103,6 @@ class MantisBuilder:
 
         fila25 = table_data('tr')[25]
         mantis.jira = str(fila25('td')[1].text).strip()
-
-        fila32 = table_data('tr')[32]
-        mantis.contexto = str(fila32('td')[1].text.encode('utf-8')).strip()
 
         return mantis
     
