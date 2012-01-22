@@ -8,243 +8,30 @@
 	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 	<META HTTP-EQUIV="Expires" CONTENT="-1">
 	<title>Mantis Report</title>
-	<style type="text/css">
-	html, body {
-	    margin:0;
-	    padding:0;
-	    font-family: "Lucida Grande", Verdana;
-	    font-size: 0.9em;
-	    text-align: center;
-	    background-color:#F2F2F2;
-	}
-
-	input, select {
-	    font-size:0.9em;
-	}
-
-	table {
-	    margin-top:-10px;
-	    margin-left:7px;
-	}
-
-	h4 {
-	    font-size:1.1em;
-	    text-decoration:none;
-	    font-weight:normal;
-	    color:#23A4FF;
-	}
-
-	a {
-	    color:#23A4FF;
-	}
-
-	#container {
-	    width: 1000px;
-	    height: 600px;
-	    margin:0 auto;
-	    position:relative;
-	}
-
-	#left-container, 
-	#right-container, 
-	#center-container {
-	    height:600px;
-	    position:absolute;
-	    top:0;
-	}
-
-	#left-container, #right-container {
-	    width:200px;
-	    color:#686c70;
-	    text-align: left;
-	    overflow: auto;
-	    background-color:#fff;
-	    background-repeat:no-repeat;
-	    border-bottom:1px solid #ddd;
-	}
-
+	<link type="text/css" rel="Stylesheet" href="http://ajax.microsoft.com/ajax/jquery.ui/1.8.5/themes/redmond/jquery-ui.css" />
+	<link type="text/css" href="http://thejit.org/static/v20/Jit/Examples/css/base.css" rel="stylesheet" />
+	<link type="text/css" href="http://thejit.org/static/v20/Jit/Examples/css/AreaChart.css" rel="stylesheet" />
+	<style type="text/css">	
 	#left-container {
-	    left:0;
-	    background-image:url('col2.png');
-	    background-position:center right;
-	    border-left:1px solid #ddd;
-
+		background-image: none;
 	}
-
-	#right-container {
-	    right:0;
-	    background-image:url('col1.png');
-	    background-position:center left;
-	    border-right:1px solid #ddd;
-	}
-
-	#right-container h4{
-	    text-indent:8px;
-	}
-
+	
 	#center-container {
-	    width:600px;
-	    left:200px;
 	    background-color:#FFFFFF;
-	    color:#ccc;
 	}
-
-	.text {
-	    margin: 7px;
-	}
-
-	#inner-details {
-	    font-size:0.8em;
-	    list-style:none;
-	    margin:7px;
-	}
-
-	#log {
-	    position:absolute;
-	    top:10px;
-	    font-size:1.0em;
-	    font-weight:bold;
-	    color:#23A4FF;
-	}
-
-
-	#infovis, #chart-div {
+	
+	#chart-div {
 	    position:relative;
-	    width:600px;
+	    width:800px;
 	    height:600px;
 	    margin:auto;
 	    overflow:hidden;
 	}
-
-	/*TOOLTIPS*/
-	.tip {
-	    color: #111;
-	    width: 139px;
-	    background-color: white;
-	    border:1px solid #ccc;
-	    -moz-box-shadow:#555 2px 2px 8px;
-	    -webkit-box-shadow:#555 2px 2px 8px;
-	    -o-box-shadow:#555 2px 2px 8px;
-	    box-shadow:#555 2px 2px 8px;
-	    opacity:0.9;
-	    filter:alpha(opacity=90);
-	    font-size:10px;
-	    font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
-	    padding:7px;
-	}
-	#right-container {
-	  display: none;
-	}
-
-	#center-container {
-	  width:800px;
-	}
-
-	#infovis, #chart-div {
-	  width:800px;
-	}
-
-	#id-list {
-		background-color:#EEEEEE;
-		border:1px solid #CCCCCC;
-		margin:10px 20px 0 20px;
-		padding:5px;
-		text-align:left;
-		text-indent:2px;
-	}
-
-	#id-list li {
-	  list-style: none;
-	  margin-bottom:3px;
-
-	}
-
-	.query-color {
-		border:1px solid #999999;
-		float:left;
-		height:10px;
-		margin:3px 3px 0 0;
-		width:10px;
-	}
-
+	
 	.button-update, .button-restore {
 	  text-align: center;
 	  width: 100px;
 	  margin:10px 35px;
-	}
-
-	.button {
-	  display: inline-block;
-	  outline: none;
-	  cursor: pointer;
-	  text-align: center;
-	  text-decoration: none;
-	  font: 14px / 100% Arial, Helvetica, sans-serif;
-	  padding: 0.5em 1em 0.55em;
-	  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
-	  -webkit-border-radius: 0.5em;
-	  -moz-border-radius: 0.5em;
-	  border-radius: 0.5em;
-	  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-	  -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-	  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-	}
-
-	.button:hover {
-	  text-decoration: none;
-	}
-
-	.button:active {
-	  position: relative;
-	  top: 1px;
-	}
-
-	/* gray */
-	.gray {
-	  color: #e9e9e9;
-	  border: solid 1px #555;
-	  background: #6e6e6e;
-	  background: -webkit-gradient(linear, left top, left bottom, from(#888), to(#575757));
-	  background: -moz-linear-gradient(top,  #888,  #575757);
-	  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#888888', endColorstr='#575757');
-	}
-
-	.gray:hover {
-	  background: #616161;
-	  background: -webkit-gradient(linear, left top, left bottom, from(#757575), to(#4b4b4b));
-	  background: -moz-linear-gradient(top,  #757575,  #4b4b4b);
-	  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#757575', endColorstr='#4b4b4b');
-	}
-
-	.gray:active {
-	  color: #afafaf;
-	  background: -webkit-gradient(linear, left top, left bottom, from(#575757), to(#888));
-	  background: -moz-linear-gradient(top,  #575757,  #888);
-	  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#575757', endColorstr='#888888');
-	}
-
-	/* white */
-	.white {
-	  color: #606060;
-	  border: solid 1px #b7b7b7;
-	  background: #fff;
-	  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
-	  background: -moz-linear-gradient(top,  #fff,  #ededed);
-	  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
-	}
-
-	.white:hover {
-	  background: #ededed;
-	  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
-	  background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
-	  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dcdcdc');
-	}
-
-	.white:active {
-	  color: #999;
-	  background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#fff));
-	  background: -moz-linear-gradient(top,  #ededed,  #fff);
-	  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff');
 	}
 	
 	#spacer {
@@ -261,7 +48,6 @@
 	    top:0;
 	}
 	</style>
-	<link type="text/css" rel="Stylesheet" href="http://ajax.microsoft.com/ajax/jquery.ui/1.8.5/themes/redmond/jquery-ui.css" />
 	<!--[if IE]><script language="javascript" type="text/javascript" src="http://thejit.org/static/v20/Jit/Extras/excanvas.js"></script><![endif]-->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.ui/1.8.5/jquery-ui.js"></script>
