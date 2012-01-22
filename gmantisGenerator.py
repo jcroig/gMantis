@@ -7,17 +7,14 @@ Created by Juan Carlos Roig on 2011-12-16.
 Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 """
 
-import sys
-import os
-import urllib, urllib2, cookielib
 from BeautifulSoup import BeautifulSoup
 from mako.template import Template
-import codecs
-import time
 from datetime import datetime
 from datetime import date
-import types
+import urllib, urllib2, cookielib
 import re
+import ConfigParser
+import codecs
 
 TEMPLATE_FILE = 'template.html'
 
@@ -176,14 +173,20 @@ class MantisScrapper:
 def main():
     t = datetime.now()
 
+    config = ConfigParser.RawConfigParser()
+    config.read('config.cfg')
+    server = config.get('server', 'address')
+    port = config.get('server', 'port')
+    if server == '' or port == '':
+        print 'Error! Configuración incorrecta. Revise el fichero de configuración config.cfg'
+        return
+
     print 'Usuario: ',
     user = raw_input()
 
     print 'Password: ',
     password = raw_input()
 
-    server = '62.97.126.94'
-    port = '8083'
     sc = MantisScrapper(server, port, user, password)
 
     projects = sc.get_projects()
