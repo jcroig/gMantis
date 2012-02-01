@@ -12,12 +12,21 @@
 	<link type="text/css" href="http://thejit.org/static/v20/Jit/Examples/css/base.css" rel="stylesheet" />
 	<link type="text/css" href="http://thejit.org/static/v20/Jit/Examples/css/AreaChart.css" rel="stylesheet" />
 	<style type="text/css">	
+	#container {
+		width: 1200px;
+	}
+	
 	#left-container {
 		background-image: none;
+		width: 250px;
 	}
 	
 	#center-container {
 	    background-color:#FFFFFF;
+		position: relative;
+		left: 0px;
+		float: right;
+		width: 950px;
 	}
 	
 	#chart-div {
@@ -40,12 +49,21 @@
 	
 	#center-container-2 {
 	    width:800px;
-	    left:200px;
 	    background-color:#000000;
 	    color:#ccc;
 	    height:600px;
-	    position:absolute;
+	    position:relative;
 	    top:0;
+		float: right;
+		width: 950px;
+	}
+	
+	h4 {
+		margin: 10px;
+	}
+	
+	#infovis {
+		width: 950px;
 	}
 	</style>
 	<!--[if IE]><script language="javascript" type="text/javascript" src="http://thejit.org/static/v20/Jit/Extras/excanvas.js"></script><![endif]-->
@@ -284,8 +302,10 @@
 						<input id="endDateG1" />
 					</div>
 				</li>
+				<li>
+					<a id="buttonUpdateGraphic1" href="#" class="theme button white button-update">Refresca Datos</a>
+				</li>
 	        </ul>
-			<a id="buttonUpdateGraphic1" href="#" class="theme button white button-update">Refresca Datos</a>
 		</div>
 		<div id="center-container">
 	    	<div id="chart-div"></div>    
@@ -315,8 +335,10 @@
 						<input id="endDateG2" />
 					</div>
 				</li>
+				<li>
+					<a id="buttonUpdateGraphic2" href="#" class="theme button white button-update">Refresca Datos</a>
+				</li>
 	        </ul>
-	        <a id="buttonUpdateGraphic2" href="#" class="theme button white button-update">Refresca Datos</a>
 		</div>
 		<div id="center-container-2">
 	    	<div id="infovis"></div>    
