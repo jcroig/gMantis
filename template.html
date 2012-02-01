@@ -65,6 +65,20 @@
 	#infovis {
 		width: 950px;
 	}
+	
+	#legend {
+		background-color: #EEEEEE;
+	    border: 1px solid #CCCCCC;
+	    margin: 10px 20px 0;
+	    padding: 5px;
+	    text-align: left;
+	    text-indent: 2px;
+	}
+	
+	#legend li {
+	    list-style: none outside none;
+	    margin-bottom: 3px;
+	}
 	</style>
 	<!--[if IE]><script language="javascript" type="text/javascript" src="http://thejit.org/static/v20/Jit/Extras/excanvas.js"></script><![endif]-->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
@@ -239,6 +253,17 @@
 			    });
 
 			    barChart.loadJSON(dataSource.getDataGraphic2(variableX, variableY, dataSource.getMantisEntreFechas(fechaInicio, fechaFin)));
+			
+			    var list = $('#legend');
+			    var legend = barChart.getLegend(),
+			        listItems = [];
+			
+				list.empty();
+			    for(var name in legend) {
+			      listItems.push('<div class=\'query-color\' style=\'background-color:'
+			          + legend[name] +'\'>&nbsp;</div>' + name);
+			    }
+			    list.append('<li>' + listItems.join('</li><li>') + '</li>');
 			};
 			
 			var graphic1Input = $('#graphic1Input');
@@ -339,6 +364,7 @@
 					<a id="buttonUpdateGraphic2" href="#" class="theme button white button-update">Refresca Datos</a>
 				</li>
 	        </ul>
+			<ul id="legend"></ul>
 		</div>
 		<div id="center-container-2">
 	    	<div id="infovis"></div>    
